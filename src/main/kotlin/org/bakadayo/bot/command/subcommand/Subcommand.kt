@@ -1,4 +1,6 @@
-package org.bakadayo.bot
+package org.bakadayo.bot.command.subcommand
+
+import org.bakadayo.bot.command.CommandContext
 
 class Subcommand(
     val name: String,
@@ -7,4 +9,6 @@ class Subcommand(
     val args: List<String> = emptyList(),
     val executeMainCommand: Boolean = true,
     val execute: CommandContext.() -> Unit
-)
+) {
+
+}

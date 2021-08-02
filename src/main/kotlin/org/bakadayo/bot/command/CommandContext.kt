@@ -1,4 +1,4 @@
-package org.bakadayo.bot
+package org.bakadayo.bot.command
 
 import discord4j.core.event.domain.message.MessageCreateEvent
 

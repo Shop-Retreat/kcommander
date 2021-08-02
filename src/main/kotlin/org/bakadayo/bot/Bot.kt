@@ -1,13 +1,12 @@
 package org.bakadayo.bot
 
-class Bot internal constructor(token: String) : Tag("bot") {
-    var commands: MutableSet<Command> = mutableSetOf()
+import org.bakadayo.bot.command.CommandContainer
 
-    fun command(init: Command.() -> Unit): Command {
-        val command = Command()
-        command.init()
-        commands.add(command)
-        return command
+class Bot internal constructor(token: String) {
+    private var commandContainer = CommandContainer()
+
+    fun commands(init: CommandContainer.() -> Unit) {
+        commandContainer.init()
     }
 }
 

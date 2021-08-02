@@ -1,6 +1,6 @@
-package org.bakadayo.bot
+package org.bakadayo.bot.command
 
-class CommandData : Tag("data") {
+class CommandData {
     var name: String = "newcommand"
 
     var description: String = ""
