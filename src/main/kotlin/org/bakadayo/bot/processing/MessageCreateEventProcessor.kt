@@ -1,7 +1,7 @@
 package org.bakadayo.bot.processing
 
 import discord4j.core.event.domain.message.MessageCreateEvent
-import org.bakadayo.bot.CommandArgs
+import org.bakadayo.bot.command.CommandArgs
 import org.bakadayo.bot.command.Command
 import org.bakadayo.bot.command.subcommand.Subcommand
 
