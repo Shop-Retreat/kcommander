@@ -3,7 +3,7 @@ package org.bakadayo.bot
 import org.bakadayo.bot.command.CommandContainer
 
 class Bot internal constructor(token: String) {
-    private var commandContainer = CommandContainer()
+    var commandContainer = CommandContainer()
 
     fun commands(init: CommandContainer.() -> Unit) {
         commandContainer.init()

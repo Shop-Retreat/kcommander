@@ -1,14 +1,15 @@
 package org.bakadayo.bot.command.subcommand
 
-import org.bakadayo.bot.command.CommandContext
+class Subcommand {
+    var data: SubcommandData = SubcommandData()
 
-class Subcommand(
-    val name: String,
-    val description: String = "",
-    val aliases: Set<String> = emptySet(),
-    val args: List<String> = emptyList(),
-    val executeMainCommand: Boolean = true,
-    val execute: CommandContext.() -> Unit
-) {
+    var execute = { _: SubcommandContext -> }
 
+    fun data(init: SubcommandData.() -> Unit) {
+        data.init()
+    }
+
+    fun code(init: SubcommandContext.() -> Unit) {
+        execute = init
+    }
 }

@@ -1,21 +1,20 @@
 package org.bakadayo.bot.command
 
-import org.bakadayo.bot.command.subcommand.Subcommand
+import org.bakadayo.bot.command.subcommand.SubcommandContainer
 
 class Command {
     var data = CommandData()
 
-    var subcommands = emptySet<Subcommand>()
+    var subcommands = SubcommandContainer()
 
     var execute = { _: CommandContext -> }
 
-    fun data(init: CommandData.() -> Unit): CommandData {
+    fun data(init: CommandData.() -> Unit) {
         data.init()
-        return data
     }
 
-    fun subcommand(init: CommandData.() -> Unit) {
-
+    fun subcommands(init: SubcommandContainer.() -> Unit) {
+        subcommands.init()
     }
 
     fun code(code: CommandContext.() -> Unit) {
