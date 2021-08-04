@@ -2,20 +2,38 @@ package org.bakadayo.bot.event
 
 import discord4j.core.event.domain.message.MessageCreateEvent
 import discord4j.rest.util.ApplicationCommandOptionType
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import org.bakadayo.bot.Bot
 import org.bakadayo.bot.command.CommandArgs
 import org.bakadayo.bot.command.Command
+import org.bakadayo.bot.command.CommandContext
 import org.bakadayo.bot.command.CommandEvent
 import org.bakadayo.bot.command.subcommand.Subcommand
 
 class MessageCreateEventProcessor(private val bot: Bot) : EventProcessor<MessageCreateEvent> {
-    override fun process(sourceEvent: MessageCreateEvent) {
-        val (command, subcommand, args) = parseMessage(sourceEvent)
+    override suspend fun process(sourceEvent: MessageCreateEvent): Unit = coroutineScope {
+        launch {
+            val (command, subcommand, args) = parseMessage(sourceEvent)
 
-        if (command == null || args == null)
-            return
+            if (command == null)
+                return@launch
 
-        val event = CommandEvent of sourceEvent
+            val context = CommandContext(CommandEvent of sourceEvent, args)
+
+            if (subcommand != null) {
+                if (subcommand.data.executeMainCommand) {
+                    command.execute.invoke(context)
+                    subcommand.execute.invoke(context)
+                    return@launch
+                }
+
+                subcommand.execute.invoke(context)
+                return@launch
+            }
+
+            command.execute.invoke(context)
+        }
     }
 
     private fun parseMessage(event: MessageCreateEvent): Triple<Command?, Subcommand?, CommandArgs?> {
