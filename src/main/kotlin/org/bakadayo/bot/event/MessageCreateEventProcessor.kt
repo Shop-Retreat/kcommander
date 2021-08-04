@@ -1,4 +1,4 @@
-package org.bakadayo.bot.processing
+package org.bakadayo.bot.event
 
 import discord4j.core.event.domain.message.MessageCreateEvent
 import discord4j.rest.util.ApplicationCommandOptionType
@@ -8,9 +8,9 @@ import org.bakadayo.bot.command.Command
 import org.bakadayo.bot.command.CommandEvent
 import org.bakadayo.bot.command.subcommand.Subcommand
 
-class MessageCreateEventProcessor(private val bot: Bot  ) : EventProcessor<MessageCreateEvent> {
-    override fun process(sourceEvent: MessageCreateEvent, bot: Bot) {
-        val (command, subcommand, args) = parseMessage(sourceEvent, bot)
+class MessageCreateEventProcessor(private val bot: Bot) : EventProcessor<MessageCreateEvent> {
+    override fun process(sourceEvent: MessageCreateEvent) {
+        val (command, subcommand, args) = parseMessage(sourceEvent)
 
         if (command == null || args == null)
             return
@@ -18,7 +18,7 @@ class MessageCreateEventProcessor(private val bot: Bot  ) : EventProcessor<Messa
         val event = CommandEvent of sourceEvent
     }
 
-    private fun parseMessage(event: MessageCreateEvent, bot: Bot): Triple<Command?, Subcommand?, CommandArgs?> {
+    private fun parseMessage(event: MessageCreateEvent): Triple<Command?, Subcommand?, CommandArgs?> {
         val noPrefix = event.message.content.removePrefix(bot.token)
         val splitMessage = noPrefix.split(" ")
 
