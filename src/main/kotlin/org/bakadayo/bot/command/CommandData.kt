@@ -1,11 +1,15 @@
 package org.bakadayo.bot.command
 
+import discord4j.rest.util.ApplicationCommandOptionType
+
 class CommandData {
-    var name: String = "newcommand"
+    var name = "newcommand"
 
-    var description: String = ""
+    var description = ""
 
-    var aliases: Set<String> = emptySet()
+    var aliases = mutableSetOf<String>()
 
-    var admin: Boolean = false
+    var args = mutableListOf<Pair<String, ApplicationCommandOptionType>>()
+
+    var admin = false
 }

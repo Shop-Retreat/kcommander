@@ -1,11 +1,15 @@
 package org.bakadayo.bot.command.subcommand
 
+import discord4j.rest.util.ApplicationCommandOptionType
+
 class SubcommandData {
-    var name: String = "newsubcommand"
+    var name = "newsubcommand"
 
-    var description: String = ""
+    var description = ""
 
-    var aliases: Set<String> = emptySet()
+    var aliases = emptySet<String>()
 
-    var executeMainCommand: Boolean = true
+    var args = mutableListOf<Pair<String, ApplicationCommandOptionType>>()
+
+    var executeMainCommand = true
 }

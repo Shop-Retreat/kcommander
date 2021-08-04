@@ -1,3 +1,3 @@
 package org.bakadayo.bot.command
 
-class CommandContext(val event: CommandEvent, val args: CommandArgs)
+class CommandContext(val event: CommandEvent, val args: CommandArgs?)
