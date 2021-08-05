@@ -5,7 +5,7 @@ import discord4j.core.DiscordClientBuilder
 import org.bakadayo.bot.command.CommandContainer
 import org.bakadayo.bot.event.EventContainer
 
-class Bot internal constructor(val token: String) {
+class Bot(val token: String) {
     val client: DiscordClient = DiscordClientBuilder.create(token).build()
 
     var commandContainer = CommandContainer()
