@@ -1,6 +1,9 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.21'
-    id("org.jetbrains.dokka") version "1.5.0"
+    id 'org.jetbrains.dokka' version '1.5.0'
+    id 'com.jfrog.artifactory' version 'latest.release'
+    id 'maven-publish'
+    id 'java-library'
 }
 
 group 'net.shopretreat'
@@ -11,6 +14,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21'
     implementation 'com.discord4j:discord4j-core:3.1.7'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.5.1-native-mt'
 }
@@ -19,6 +23,30 @@ test {
     useJUnitPlatform()
 }
 
-compileKotlin {
-    version 1.8
+compileKotlin {}
+
+publishing {
+    publications {
+        create('kcommander', MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+artifactory {
+    contextUrl = 'https://shopretreat.jfrog.io/artifactory/'
+
+    publish {
+        repository {
+            repoKey = 'default-maven-local'
+            username = 'username'
+            password = 'password'
+        }
+
+        defaults {
+            publications('kcommander')
+
+            publishArtifacts = true
+        }
+    }
 }
