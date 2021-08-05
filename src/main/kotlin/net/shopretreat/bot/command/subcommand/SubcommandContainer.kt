@@ -1,4 +1,4 @@
-package org.bakadayo.bot.command.subcommand
+package net.shopretreat.bot.command.subcommand
 
 class SubcommandContainer: LinkedHashSet<Subcommand>() {
     fun subcommand(init: Subcommand.() -> Unit) {

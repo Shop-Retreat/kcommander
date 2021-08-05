@@ -1,4 +1,4 @@
-package org.bakadayo.bot.command
+package net.shopretreat.bot.command
 
 interface CommandArgs {
     operator fun get(name: String): String?

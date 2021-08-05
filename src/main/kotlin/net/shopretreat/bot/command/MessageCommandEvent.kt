@@ -1,4 +1,4 @@
-package org.bakadayo.bot.command
+package net.shopretreat.bot.command
 
 import discord4j.core.`object`.entity.Guild
 import discord4j.core.`object`.entity.Member

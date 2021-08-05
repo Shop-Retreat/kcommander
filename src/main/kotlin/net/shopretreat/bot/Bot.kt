@@ -1,9 +1,9 @@
-package org.bakadayo.bot
+package net.shopretreat.bot
 
 import discord4j.core.DiscordClient
 import discord4j.core.DiscordClientBuilder
-import org.bakadayo.bot.command.CommandContainer
-import org.bakadayo.bot.event.EventContainer
+import net.shopretreat.bot.command.CommandContainer
+import net.shopretreat.bot.event.EventContainer
 
 class Bot(val token: String) {
     val client: DiscordClient = DiscordClientBuilder.create(token).build()

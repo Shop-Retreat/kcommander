@@ -1,19 +1,23 @@
-package org.bakadayo.bot.event
+package net.shopretreat.bot.event
 
 import discord4j.core.event.domain.message.MessageCreateEvent
 import discord4j.rest.util.ApplicationCommandOptionType
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import org.bakadayo.bot.Bot
-import org.bakadayo.bot.command.CommandArgs
-import org.bakadayo.bot.command.Command
-import org.bakadayo.bot.command.CommandContext
-import org.bakadayo.bot.command.CommandEvent
-import org.bakadayo.bot.command.subcommand.Subcommand
+import net.shopretreat.bot.Bot
+import net.shopretreat.bot.command.CommandArgs
+import net.shopretreat.bot.command.Command
+import net.shopretreat.bot.command.CommandContext
+import net.shopretreat.bot.command.CommandEvent
+import net.shopretreat.bot.command.subcommand.Subcommand
 
 class MessageCreateEventProcessor(private val bot: Bot) : EventProcessor<MessageCreateEvent> {
-    override suspend fun process(sourceEvent: MessageCreateEvent): Unit = coroutineScope {
-        launch {
+    override fun process(sourceEvent: MessageCreateEvent) {
+        val scope = CoroutineScope(Dispatchers.IO)
+
+        scope.launch {
             val (command, subcommand, args) = parseMessage(sourceEvent)
 
             if (command == null)

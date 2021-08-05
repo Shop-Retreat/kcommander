@@ -1,4 +1,4 @@
-package org.bakadayo.bot.command.subcommand
+package net.shopretreat.bot.command.subcommand
 
 import discord4j.rest.util.ApplicationCommandOptionType
 

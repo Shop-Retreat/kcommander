@@ -1,6 +1,6 @@
-package org.bakadayo.bot.command.subcommand
+package net.shopretreat.bot.command.subcommand
 
-import org.bakadayo.bot.command.CommandContext
+import net.shopretreat.bot.command.CommandContext
 
 class Subcommand {
     var data: SubcommandData = SubcommandData()
