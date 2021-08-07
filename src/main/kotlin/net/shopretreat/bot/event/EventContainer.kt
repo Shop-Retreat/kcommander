@@ -6,20 +6,12 @@ import net.shopretreat.bot.Bot
 
 class EventContainer(val bot: Bot) {
     inline fun <reified T : Event> event(noinline on: (T) -> Unit) {
-        bot.client.withGateway {
-            mono {
-                it.on(T::class.java).subscribe(on)
-            }
-        }
+        bot.gateway.on(T::class.java).subscribe(on)
     }
 
     inline fun <reified T : Event> eventProcessor(processor: EventProcessor<T>) {
-        bot.client.withGateway {
-            mono {
-                it.on(T::class.java).subscribe {
-                    processor.process(it)
-                }
-            }
+        bot.gateway.on(T::class.java).subscribe {
+            processor.process(it)
         }
     }
 }
