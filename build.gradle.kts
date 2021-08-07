@@ -1,5 +1,5 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.5.21"
+    kotlin("jvm") version "1.5.21"
     id("org.jetbrains.dokka") version "1.5.0"
     id("com.jfrog.artifactory") version "latest.release"
     `maven-publish`
